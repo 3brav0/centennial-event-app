@@ -1,0 +1,82 @@
+{
+  "days": [
+    { "date": "2026-10-02", "short": { "es": "VIE", "en": "FRI" }, "num": "2", "long": { "es": "Viernes 2 de octubre", "en": "Friday, October 2" } },
+    { "date": "2026-10-03", "short": { "es": "SÁB", "en": "SAT" }, "num": "3", "long": { "es": "Sábado 3 de octubre", "en": "Saturday, October 3" } },
+    { "date": "2026-10-04", "short": { "es": "DOM", "en": "SUN" }, "num": "4", "long": { "es": "Domingo 4 de octubre", "en": "Sunday, October 4" } }
+  ],
+  "events": [
+    {
+      "id": "liberty",
+      "day": 0,
+      "start": "2026-10-02T14:00:00-04:00",
+      "category": { "es": "CONCIERTO CULTURAL Y FOTOGALERÍA", "en": "CULTURAL CONCERT & PHOTO GALLERY" },
+      "title": { "es": "Concierto Cultural y Fotogalería", "en": "Cultural Concert & Photo Gallery" },
+      "venue": { "es": "Liberty Plaza", "en": "Liberty Plaza" },
+      "address": { "es": "Frente al Capitolio del Estado de Georgia, Atlanta, GA 30334", "en": "Across from the Georgia State Capitol, Atlanta, GA 30334" },
+      "mapsQuery": "Liberty Plaza, Atlanta, GA 30334",
+      "info": [],
+      "parkingNote": null,
+      "parking": [
+        { "name": { "es": "Pete Hackney Parking Deck", "en": "Pete Hackney Parking Deck" }, "address": "162 Jesse Hill Jr Dr SE, Atlanta, GA", "kind": "deck", "cost": "paid" },
+        { "name": { "es": "Capitol Lot", "en": "Capitol Lot" }, "address": "218 Capitol Ave, Atlanta, GA", "kind": "lot", "cost": "paid" },
+        { "name": { "es": "Memorial Lot", "en": "Memorial Lot" }, "address": "80 Memorial Dr SW, Atlanta, GA", "kind": "lot", "cost": "paid" },
+        { "name": { "es": "Steve Polk Plaza", "en": "Steve Polk Plaza" }, "address": "65 Martin Luther King Jr Dr, Atlanta, GA", "kind": "deck", "cost": "paid" }
+      ],
+      "transit": {
+        "title": { "es": "MARTA · Georgia State", "en": "MARTA · Georgia State" },
+        "body": {
+          "es": "La estación Georgia State (líneas Azul y Verde) queda a pocos minutos a pie del Capitolio. Evita buscar estacionamiento en el centro.",
+          "en": "Georgia State station (Blue & Green lines) is a short walk from the Capitol — skip the downtown parking hunt."
+        }
+      }
+    },
+    {
+      "id": "fourthward",
+      "day": 1,
+      "start": "2026-10-03T12:00:00-04:00",
+      "category": { "es": "CONCIERTO CULTURAL Y FOTOGALERÍA", "en": "CULTURAL CONCERT & PHOTO GALLERY" },
+      "title": { "es": "Concierto Cultural y Fotogalería", "en": "Cultural Concert & Photo Gallery" },
+      "venue": { "es": "Historic Fourth Ward Park · Campo multiuso", "en": "Historic Fourth Ward Park · Multiuse Field" },
+      "address": { "es": "830 Willoughby Way NE, Atlanta, GA 30312", "en": "830 Willoughby Way NE, Atlanta, GA 30312" },
+      "mapsQuery": "830 Willoughby Way NE, Atlanta, GA 30312",
+      "info": [],
+      "parkingNote": {
+        "es": "El parque no tiene estacionamiento propio. Usa la calle o un garaje cercano y camina por el BeltLine.",
+        "en": "The park has no parking lot of its own. Use street parking or a nearby garage and walk in on the BeltLine."
+      },
+      "parking": [
+        { "name": { "es": "Estacionamiento en la calle", "en": "Street parking" }, "address": "Angier Ave, Morgan St, Garden Park Dr, Dallas St, Rankin St", "kind": "street", "cost": "signs", "mapsQuery": "Rankin St NE & Angier Ave NE, Atlanta, GA" },
+        { "name": { "es": "Ponce City Market", "en": "Ponce City Market" }, "address": "675 Ponce de Leon Ave NE, Atlanta, GA 30308", "kind": "deck", "cost": "paid" }
+      ],
+      "transit": null
+    },
+    {
+      "id": "baptism",
+      "day": 1,
+      "start": "2026-10-03T17:30:00-04:00",
+      "category": { "es": "CEREMONIA DE BAUTISMOS", "en": "BAPTISM CEREMONY" },
+      "title": { "es": "Ceremonia de Bautismos", "en": "Baptism Ceremony" },
+      "venue": { "es": "Casa de Oración Marietta", "en": "Marietta House of Prayer" },
+      "address": { "es": "[DIRECCIÓN] · Marietta, GA", "en": "[ADDRESS] · Marietta, GA" },
+      "mapsQuery": "Casa de Oración Marietta, Marietta, GA",
+      "info": [],
+      "parkingNote": null,
+      "parking": [],
+      "transit": null
+    },
+    {
+      "id": "sunday",
+      "day": 2,
+      "start": "2026-10-04T12:00:00-04:00",
+      "category": { "es": "EVENTO DEL DOMINGO", "en": "SUNDAY EVENT" },
+      "title": { "es": "Evento del Domingo", "en": "Sunday Event" },
+      "venue": { "es": "Mable House Barnes Amphitheatre", "en": "Mable House Barnes Amphitheatre" },
+      "address": { "es": "5239 Floyd Rd, Mableton, GA 30126", "en": "5239 Floyd Rd, Mableton, GA 30126" },
+      "mapsQuery": "Mable House Barnes Amphitheatre, 5239 Floyd Rd, Mableton, GA 30126",
+      "info": [],
+      "parkingNote": null,
+      "parking": [],
+      "transit": null
+    }
+  ]
+}
