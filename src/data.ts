@@ -16,6 +16,16 @@ export interface Parking {
   mapsQuery?: string;
 }
 
+export interface VenueImage {
+  /** Path relative to the site root, e.g. img/venues/liberty-plaza.jpg */
+  src: string;
+  credit?: string;
+  license?: string;
+  source?: string;
+  /** CSS object-position, to keep the subject in frame when cropped. */
+  position?: string;
+}
+
 export interface EventItem {
   id: string;
   day: number;
@@ -25,6 +35,7 @@ export interface EventItem {
   venue: Localized;
   address: Localized;
   mapsQuery: string;
+  image: VenueImage | null;
   info: Localized[];
   parkingNote: Localized | null;
   parking: Parking[];

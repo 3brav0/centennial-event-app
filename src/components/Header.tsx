@@ -1,17 +1,23 @@
 import type { ComponentChildren } from 'preact';
 import { LangToggle } from './LangToggle';
 
-export function ScreenHeader({ title, children }: { title: string; children?: ComponentChildren }) {
+/** Green title band. `aside` sits beside the title on wide screens and below it on phones. */
+export function ScreenHeader({ title, children, aside }: { title: string; children?: ComponentChildren; aside?: ComponentChildren }) {
   return (
     <header class="screen-header">
-      <div class="row between start">
-        <div class="stack-4">
-          <div class="eyebrow gold">CENTENARIO 2026</div>
-          <h1 class="display-38">{title}</h1>
+      <div class="container header-inner">
+        <div class="header-main">
+          <div class="row between start">
+            <div class="stack-4">
+              <div class="eyebrow gold">CENTENARIO 2026</div>
+              <h1 class="display-38">{title}</h1>
+            </div>
+            <LangToggle />
+          </div>
+          {children}
         </div>
-        <LangToggle />
+        {aside && <div class="header-aside">{aside}</div>}
       </div>
-      {children}
     </header>
   );
 }

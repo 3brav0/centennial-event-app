@@ -1,7 +1,7 @@
 # Centenario 2026 — Event App
 
 Progressive web app for the Centenario 2026 celebration (Atlanta, GA · October 2 – 4, 2026).
-Bilingual (Español / English), installable, and works offline.
+Bilingual (Español / English), installable, works offline, and adapts from phones to wide desktop screens.
 
 - **Home**: countdown to the next event, latest announcement, and the three-day program
 - **Program**: events by day, with parking indicators
@@ -41,6 +41,25 @@ Open apps check for new announcements every 60 seconds and when brought back to 
 People who turned on notifications get a system notification for new entries while the app is
 open. (True push to a closed app needs a push server; see *Next steps*.)
 
+### Event photos
+
+Put the photo in `public/img/venues/` (a JPEG about 1200px wide, under ~150 KB) and point the
+event's `image` at it:
+
+```json
+"image": {
+  "src": "img/venues/my-venue.jpg",
+  "credit": "Photographer name",
+  "license": "CC BY 4.0",
+  "source": "https://link-to-original",
+  "position": "50% 60%"
+}
+```
+
+`credit`, `license` and `source` are optional for your own photos but **required** for Creative
+Commons images (shown as a small caption on the event page). `position` adjusts the crop. Set
+`"image": null` to show the Centenario crest instead.
+
 ### Directions
 
 Each event's `mapsQuery` is what's sent to the maps apps. The **Directions** button picks the
@@ -73,6 +92,12 @@ so adding a custom domain later needs no code change.
 - **Faster announcements**: point `VITE_ANNOUNCEMENTS_URL` at a hosted JSON/CMS endpoint so posts
   don't wait for a redeploy.
 
-## Known placeholders
+## Photo credits
 
-- The Baptism Ceremony address (`[DIRECCIÓN]` / `[ADDRESS]`) in `events.json`.
+Venue photos from Wikimedia Commons:
+
+- Liberty Plaza — [Stevens-Wilkinson](https://commons.wikimedia.org/wiki/File:Liberty_Plaza_2015.jpg), CC BY-SA 4.0
+- Historic Fourth Ward Park — [Marc Merlin](https://commons.wikimedia.org/wiki/File:Clear_Creek_Basin_at_Historic_Fourth_Ward_Park_in_Atlanta,_July_2015.jpg), CC BY-SA 4.0
+- Mable House Barnes Amphitheatre — [John Phelan](https://commons.wikimedia.org/wiki/File:Entrance_to_the_Mable_House_Barnes_Amphitheatre,_Mableton_GA.jpg), CC BY 4.0
+
+The Baptism Ceremony (Casa de Oración Marietta) has no photo yet and shows the crest.

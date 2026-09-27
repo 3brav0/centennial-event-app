@@ -6,7 +6,7 @@ import { Home } from './screens/Home';
 import { ProgramScreen } from './screens/Program';
 import { EventScreen } from './screens/Event';
 import { LiveScreen } from './screens/Live';
-import { BottomNav } from './components/BottomNav';
+import { BottomNav, TopBar } from './components/BottomNav';
 
 export type Route =
   | { name: 'home' }
@@ -123,6 +123,7 @@ export function App() {
   return (
     <AppContext.Provider value={ctx}>
       <div class="app">
+        <TopBar active={route.name === 'event' ? 'program' : route.name} />
         <main class="screen">
           {route.name === 'home' && <Home />}
           {route.name === 'program' && <ProgramScreen day={route.day} />}

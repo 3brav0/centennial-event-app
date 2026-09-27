@@ -50,15 +50,14 @@ export function LiveScreen() {
 
   return (
     <div class="stack">
-      <ScreenHeader title={t.notices}>
+      <ScreenHeader title={t.notices} aside={<NotifToggle />}>
         <div class="row center gap-8 t-13 mint" role="status">
           <span class={`live-dot light${offline ? ' off' : ''}`} />
           <span>{offline ? t.offline : t.liveUpdated}</span>
         </div>
-        <NotifToggle />
       </ScreenHeader>
 
-      <div class="live-body">
+      <div class="container live-body">
         <div class="row gap-8" role="group">
           {filters.map(([k, label]) => (
             <button type="button" key={k} class={`filter${filter === k ? ' on' : ''}`} aria-pressed={filter === k} onClick={() => setFilter(k)}>
@@ -67,7 +66,7 @@ export function LiveScreen() {
           ))}
         </div>
 
-        <div aria-live="polite" class="stack-12">
+        <div aria-live="polite" class="notice-grid">
           {shown.length > 0 ? (
             shown.map((a) => (
               <article class={`notice${a.pinned ? ' pinned' : ''}`} key={a.id}>

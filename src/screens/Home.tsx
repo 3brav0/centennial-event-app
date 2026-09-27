@@ -6,6 +6,7 @@ import { Chevron, Nav, Pin } from '../icons';
 import { LangToggle } from '../components/LangToggle';
 import { InstallCard } from '../components/InstallCard';
 import { MapLink } from '../components/MapLink';
+import { VenuePhoto } from '../components/VenuePhoto';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -32,7 +33,9 @@ export function Home() {
   const { t, lang, program, now, announcements } = useApp();
   const events = program.events.map((e) => eventView(e, program, lang));
   const { event: next, status } = nextEvent(events, now);
-  const latest = announcements.find((a) => !a.pinned) ?? announcements[0];
+  // Phones show only the newest notice; wider screens show up to three.
+  const recent = announcements.filter((a) => !a.pinned).slice(0, 3);
+  const teaser = recent.length ? recent : announcements.slice(0, 1);
   const label = status === 'running' ? t.happeningNow : status === 'finished' ? t.finished : t.nextUp;
 
   return (
@@ -44,74 +47,90 @@ export function Home() {
         </div>
       </div>
 
-      <div class="intro">
-        <div class="eyebrow">CENTENARIO 2026</div>
-        <h1 class="display-34">{t.tagline}</h1>
-        <div class="t-14 muted">{t.dates}</div>
-      </div>
+      <div class="container home-layout">
+        <div class="intro">
+          <div class="eyebrow">CENTENARIO 2026</div>
+          <h1 class="display-34">{t.tagline}</h1>
+          <div class="t-14 muted">{t.dates}</div>
+        </div>
 
-      <div class="home-body">
         <section class="next-card" aria-label={label}>
-          <div class="row between center">
-            <div class="eyebrow gold small">{label}</div>
-            <div class="t-12 mint">{next.dayShort} · {next.time}</div>
-          </div>
-          {status === 'upcoming' && <Countdown ms={next.startMs - now} />}
-          <div class="stack-6">
-            <div class="display-25">{next.title[lang]}</div>
-            <div class="row center gap-6 t-14 mint">
-              <Pin size={16} />
-              <span>{next.venue[lang]}</span>
+          <div class="next-content">
+            <div class="row between center">
+              <div class="eyebrow gold small">{label}</div>
+              <div class="t-12 mint">{next.dayShort} · {next.time}</div>
+            </div>
+            {status === 'upcoming' && <Countdown ms={next.startMs - now} />}
+            <div class="stack-6">
+              <div class="display-25">{next.title[lang]}</div>
+              <div class="row center gap-6 t-14 mint">
+                <Pin size={16} />
+                <span>{next.venue[lang]}</span>
+              </div>
+            </div>
+            <div class="grid-2">
+              <MapLink url={directionsLink(next.mapsQuery)} class="btn-gold">
+                <Nav size={18} />
+                <span>{t.directions}</span>
+              </MapLink>
+              <a href={href({ name: 'event', id: next.id })} class="btn-ghost-light">{t.details}</a>
             </div>
           </div>
-          <div class="grid-2">
-            <MapLink url={directionsLink(next.mapsQuery)} class="btn-gold">
-              <Nav size={18} />
-              <span>{t.directions}</span>
-            </MapLink>
-            <a href={href({ name: 'event', id: next.id })} class="btn-ghost-light">{t.details}</a>
-          </div>
+          <VenuePhoto event={next} class="next-photo" />
         </section>
 
-        {latest && (
-          <a href={href({ name: 'live' })} class="card live-teaser">
-            <div class="row center gap-8">
-              <span class="live-dot" />
-              <span class="live-label">{t.liveNow}</span>
-              <span class="t-12 faint">· {relativeTime(latest.postedAt, lang, now)}</span>
-            </div>
-            <div class="t-16 bold lh-13">{latest.title[lang]}</div>
-            <div class="t-14 muted lh-145">{latest.body[lang]}</div>
-            <div class="row center gap-4 t-14 bold green">
-              <span>{t.allNotices}</span>
-              <Chevron size={16} />
-            </div>
-          </a>
-        )}
+        <div class="home-side">
+          {teaser.length > 0 && (
+            <a href={href({ name: 'live' })} class="card live-teaser">
+              <div class="row center gap-8">
+                <span class="live-dot" />
+                <span class="live-label">{t.liveNow}</span>
+                <span class="t-12 faint teaser-head-time">· {relativeTime(teaser[0].postedAt, lang, now)}</span>
+              </div>
+              {teaser.map((a) => (
+                <div class="teaser-item stack-6" key={a.id}>
+                  <time class="t-12 faint teaser-time" dateTime={a.postedAt}>{relativeTime(a.postedAt, lang, now)}</time>
+                  <div class="t-16 bold lh-13">{a.title[lang]}</div>
+                  <div class="t-14 muted lh-145">{a.body[lang]}</div>
+                </div>
+              ))}
+              <div class="row center gap-4 t-14 bold green">
+                <span>{t.allNotices}</span>
+                <Chevron size={16} />
+              </div>
+            </a>
+          )}
+          <InstallCard />
+        </div>
 
-        <section class="stack-10 pt-6">
+        <section class="stack-10 home-program">
           <h2 class="eyebrow section">{t.theProgram}</h2>
-          <div class="card list">
+          <div class="day-grid">
             {program.days.map((d, i) => {
               const evs = events.filter((e) => e.day === i);
               return (
-                <a href={href({ name: 'program', day: i })} class="day-row" key={d.date}>
-                  <div class="day-badge">
-                    <div class="day-badge-short">{d.short[lang]}</div>
-                    <div class="day-badge-num">{d.num}</div>
+                <a href={href({ name: 'program', day: i })} class="card day-row" key={d.date}>
+                  {evs[0] && <VenuePhoto event={evs[0]} class="day-photo" />}
+                  <div class="day-row-main">
+                    <div class="day-badge">
+                      <div class="day-badge-short">{d.short[lang]}</div>
+                      <div class="day-badge-num">{d.num}</div>
+                    </div>
+                    <div class="grow stack-2 min-0">
+                      <div class="t-15 bold">{d.long[lang]}</div>
+                      <div class="t-13 muted day-summary">
+                        {evs.map((e) => (
+                          <span key={e.id}>{e.time} · {e.venue[lang]}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <Chevron size={18} stroke="#7A5712" />
                   </div>
-                  <div class="grow stack-2 min-0">
-                    <div class="t-15 bold">{d.long[lang]}</div>
-                    <div class="t-13 muted ellipsis">{evs.map((e) => `${e.time} · ${e.venue[lang]}`).join('  ·  ')}</div>
-                  </div>
-                  <Chevron size={18} stroke="#7A5712" />
                 </a>
               );
             })}
           </div>
         </section>
-
-        <InstallCard />
       </div>
     </div>
   );
