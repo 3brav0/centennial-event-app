@@ -23,3 +23,4 @@ export const Bus = (p: P) => <Svg {...p}><rect x="6" y="3" width="12" height="14
 export const Bell = (p: P) => <Svg {...p}><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" /><path d="M10 20.5a2 2 0 0 0 4 0" /></Svg>;
 export const Home = (p: P) => <Svg {...p}><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z" /></Svg>;
 export const Info = (p: P) => <Svg {...p}><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></Svg>;
+export const Download = (p: P) => <Svg width={2} {...p}><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></Svg>;

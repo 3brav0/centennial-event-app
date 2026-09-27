@@ -1,6 +1,7 @@
 import { href, useApp } from '../app';
 import { Bell, Calendar, Home } from '../icons';
 import { LangToggle } from './LangToggle';
+import { InstallButton } from './InstallButton';
 
 type Tab = 'home' | 'program' | 'live';
 
@@ -51,6 +52,7 @@ export function TopBar({ active }: { active: Tab }) {
         <nav class="top-nav" aria-label={t.navAria}>
           <NavLinks active={active} iconSize={20} />
         </nav>
+        <InstallButton />
         <LangToggle />
       </div>
     </header>
