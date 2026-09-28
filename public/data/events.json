@@ -120,7 +120,7 @@
     {
       "id": "evening-prayer",
       "day": 0,
-      "start": "2026-10-02T17:30:00-04:00",
+      "start": "2026-10-02T18:30:00-04:00",
       "category": {
         "es": "CULTO DE ORACIÓN",
         "en": "EVENING PRAYER"
@@ -138,7 +138,10 @@
         "en": "3050 Austell Rd SW, Marietta, GA 30008"
       },
       "mapsQuery": "3050 Austell Rd SW, Marietta, GA 30008",
-      "image": null,
+      "image": {
+        "src": "img/venues/marietta-church.jpg",
+        "position": "50% 72%"
+      },
       "info": [],
       "parkingNote": null,
       "parking": [],
@@ -220,7 +223,10 @@
         "en": "3050 Austell Rd SW, Marietta, GA 30008"
       },
       "mapsQuery": "3050 Austell Rd SW, Marietta, GA 30008",
-      "image": null,
+      "image": {
+        "src": "img/venues/marietta-church.jpg",
+        "position": "50% 72%"
+      },
       "info": [],
       "parkingNote": null,
       "parking": [],

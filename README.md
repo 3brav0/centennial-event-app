@@ -100,4 +100,4 @@ Venue photos from Wikimedia Commons:
 - Historic Fourth Ward Park — [Marc Merlin](https://commons.wikimedia.org/wiki/File:Clear_Creek_Basin_at_Historic_Fourth_Ward_Park_in_Atlanta,_July_2015.jpg), CC BY-SA 4.0
 - Mable House Barnes Amphitheatre — [John Phelan](https://commons.wikimedia.org/wiki/File:Entrance_to_the_Mable_House_Barnes_Amphitheatre,_Mableton_GA.jpg), CC BY 4.0
 
-The Baptism Ceremony (Casa de Oración Marietta) has no photo yet and shows the crest.
+Casa de Oración Marietta photo provided by the organizers.
