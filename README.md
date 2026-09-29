@@ -23,7 +23,8 @@ no GitHub access needed.
 ### Posting an announcement
 
 Add a row to the **Avisos** tab of the Google Sheet; it appears in the app within about a minute.
-Volunteer instructions (Spanish/English): [`docs/announcements-guide.md`](docs/announcements-guide.md).
+Volunteer instructions (Spanish/English): [`docs/announcements-guide.md`](docs/announcements-guide.md),
+or as a printable PDF: [`docs/announcements-guide.pdf`](docs/announcements-guide.pdf).
 
 One-time setup of the sheet and its Apps Script web app:
 [`docs/google-sheet-setup.md`](docs/google-sheet-setup.md). The script is in
