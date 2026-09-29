@@ -47,7 +47,7 @@ export function TopBar({ active }: { active: Tab }) {
       <div class="container topbar-inner">
         <a href={href({ name: 'home' })} class="brand">
           <img src={`${import.meta.env.BASE_URL}img/crest.png`} alt="" width={34} height={36} />
-          <span>CENTENARIO 2026</span>
+          <span>{t.brand}</span>
         </a>
         <nav class="top-nav" aria-label={t.navAria}>
           <NavLinks active={active} iconSize={20} />

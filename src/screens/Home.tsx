@@ -50,7 +50,7 @@ export function Home() {
 
       <div class="container home-layout">
         <div class="intro">
-          <div class="eyebrow">CENTENARIO 2026</div>
+          <div class="eyebrow">{t.brand}</div>
           <h1 class="display-34">{t.tagline}</h1>
           <div class="t-14 muted">{t.dates}</div>
         </div>

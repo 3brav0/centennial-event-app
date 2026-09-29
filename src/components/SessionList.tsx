@@ -13,9 +13,15 @@ export function SessionList({ sessions }: { sessions: Session[] }) {
         return (
           <li class={`session ${s.kind}`} key={s.start}>
             <div class="session-time">
-              <span class="time-hm">{from.hm}</span>
-              <span class="time-ampm">{from.ampm}</span>
-              <span class="session-until">– {to.hm} {to.ampm}</span>
+              <span class="time-block">
+                <span class="time-hm">{from.hm}</span>
+                <span class="time-ampm">{from.ampm}</span>
+              </span>
+              <span class="time-sep">–</span>
+              <span class="time-block">
+                <span class="time-hm">{to.hm}</span>
+                <span class="time-ampm">{to.ampm}</span>
+              </span>
             </div>
             <div class="session-card">
               <div class="eyebrow tiny">{s.kind === 'topic' ? t.topicLabel : t.ceremony}</div>
