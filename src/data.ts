@@ -74,9 +74,25 @@ export interface Announcement {
 }
 
 const BASE = import.meta.env.BASE_URL;
-// Announcements can be served from anywhere (e.g. a CMS or a raw GitHub URL)
-// by setting VITE_ANNOUNCEMENTS_URL at build time.
-const ANNOUNCEMENTS_URL = import.meta.env.VITE_ANNOUNCEMENTS_URL || `${BASE}data/announcements.json`;
+// Live announcements come from the Google Sheet web app (google-apps-script/Code.gs) when
+// VITE_ANNOUNCEMENTS_URL is set at build time; the bundled JSON file is the fallback.
+const LOCAL_ANNOUNCEMENTS = `${BASE}data/announcements.json`;
+const LIVE_ANNOUNCEMENTS: string | undefined = import.meta.env.VITE_ANNOUNCEMENTS_URL;
+
+/**
+ * Fetches the live feed. The bundled file is only a first-visit fallback: once the
+ * app has shown live posts, a failed fetch keeps them rather than swapping in stale ones.
+ */
+async function fetchAnnouncements(haveCached: boolean): Promise<Announcement[]> {
+  const get = async (url: string) => (await getJson<{ announcements: Announcement[] }>(url)).announcements;
+  if (!LIVE_ANNOUNCEMENTS) return get(LOCAL_ANNOUNCEMENTS);
+  try {
+    return await get(LIVE_ANNOUNCEMENTS);
+  } catch (e) {
+    if (haveCached) throw e;
+    return get(LOCAL_ANNOUNCEMENTS);
+  }
+}
 const POLL_MS = 60_000;
 
 async function getJson<T>(url: string): Promise<T> {
@@ -138,10 +154,10 @@ export function useAnnouncements(lang: Lang, notifyEnabled: boolean) {
     let alive = true;
     const load = async () => {
       try {
-        const data = await getJson<{ announcements: Announcement[] }>(ANNOUNCEMENTS_URL);
+        const announcements = await fetchAnnouncements(readStore<Announcement[]>('ann.cache', []).length > 0);
         if (!alive) return;
-        const list = [...data.announcements].sort(
-          (a, b) => Number(b.pinned) - Number(a.pinned) || b.postedAt.localeCompare(a.postedAt)
+        const list = [...announcements].sort(
+          (a, b) => Number(b.pinned) - Number(a.pinned) || Date.parse(b.postedAt) - Date.parse(a.postedAt)
         );
         // First load only establishes the baseline; later polls notify for new ids.
         if (known.current && notifyRef.current) {

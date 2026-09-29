@@ -10,36 +10,30 @@ Bilingual (Español / English), installable, works offline, and adapts from phon
 
 ## Updating content (no code needed)
 
-All content lives in two JSON files. Edit them on GitHub (pencil icon → *Commit changes*) and the
-site redeploys automatically in about a minute.
+Event content lives in a JSON file; edit it on GitHub (pencil icon → *Commit changes*) and the
+site redeploys automatically in about a minute. Announcements are posted from a Google Sheet, with
+no GitHub access needed.
 
-| File | What it holds |
+| Where | What it holds |
 | --- | --- |
-| [`public/data/events.json`](public/data/events.json) | Days, events, addresses, parking, transit |
-| [`public/data/announcements.json`](public/data/announcements.json) | Live announcements |
+| [`public/data/events.json`](public/data/events.json) | Days, events, topics, addresses, parking, transit |
+| Google Sheet **Centenario 2026 — Avisos** | Live announcements |
+| [`public/data/announcements.json`](public/data/announcements.json) | Fallback announcements (used before the sheet is connected, or on a first visit while it's unreachable) |
 
 ### Posting an announcement
 
-Add an entry to the top of `announcements` in `public/data/announcements.json`:
+Add a row to the **Avisos** tab of the Google Sheet; it appears in the app within about a minute.
+Volunteer instructions (Spanish/English): [`docs/announcements-guide.md`](docs/announcements-guide.md).
 
-```json
-{
-  "id": "gates-open-sat",
-  "pinned": false,
-  "type": "important",
-  "postedAt": "2026-10-03T11:15:00-04:00",
-  "title": { "es": "Las puertas ya están abiertas", "en": "Gates are now open" },
-  "body":  { "es": "Entrada por Willoughby Way.", "en": "Enter from Willoughby Way." }
-}
-```
-
-- `id` must be unique; it's how the app tracks what each person has already read.
-- `type` is `important` or `logistics` (the two filters on the Announcements screen).
-- `pinned: true` keeps it at the top and out of the unread count.
+One-time setup of the sheet and its Apps Script web app:
+[`docs/google-sheet-setup.md`](docs/google-sheet-setup.md). The script is in
+[`google-apps-script/Code.gs`](google-apps-script/Code.gs); the app reads its `/exec` URL from the
+`ANNOUNCEMENTS_URL` repository variable at build time.
 
 Open apps check for new announcements every 60 seconds and when brought back to the foreground.
 People who turned on notifications get a system notification for new entries while the app is
-open. (True push to a closed app needs a push server; see *Next steps*.)
+open. (True push to a closed app needs a push server; see *Next steps*.) If the sheet can't be
+reached, the app keeps showing the last announcements it loaded.
 
 ### Doctrinal topics and ceremonies
 
@@ -121,8 +115,6 @@ so adding a custom domain later needs no code change.
 
 - **Push notifications to closed apps**: needs a small backend (e.g. Firebase Cloud Messaging or a
   Web Push worker) to send pushes when an announcement is posted.
-- **Faster announcements**: point `VITE_ANNOUNCEMENTS_URL` at a hosted JSON/CMS endpoint so posts
-  don't wait for a redeploy.
 
 ## Photo credits
 

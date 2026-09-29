@@ -288,6 +288,8 @@ img { display: block; }
 .filter.on { background: var(--forest); color: var(--ivory); border-color: var(--forest); }
 .notice { border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 8px; background: var(--paper); border: 1px solid var(--line); }
 .notice.pinned { background: #FFF8E6; border: 1.5px solid #D9B25A; }
+/* Keep line breaks volunteers type in the sheet (Alt+Enter). */
+.notice p, .teaser-item .muted { white-space: pre-line; }
 .empty {
   background: var(--paper); border: 1px dashed #D8CBA6; border-radius: 20px; padding: 28px 20px;
   display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
