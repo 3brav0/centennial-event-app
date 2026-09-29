@@ -7,6 +7,7 @@ import { LangToggle } from '../components/LangToggle';
 import { MapLink } from '../components/MapLink';
 import { VenuePhoto } from '../components/VenuePhoto';
 import { WeatherCard } from '../components/Weather';
+import { SessionList } from '../components/SessionList';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -70,6 +71,15 @@ export function EventScreen({ id }: { id: string }) {
 
       <div class={`container event-body${ev.parking.length > 0 ? ' has-side' : ''}`}>
         <div class="event-main">
+          {raw.sessions?.length ? (
+            <section class="stack-10 o-sessions">
+              <h2 class="eyebrow section">{raw.sessions.some((s) => s.kind === 'topic') ? t.eventProgram : t.ceremony}</h2>
+              <div class="card pad-16">
+                <SessionList sessions={raw.sessions} />
+              </div>
+            </section>
+          ) : null}
+
           <section class="stack-10 o-location">
             <h2 class="eyebrow section">{t.location}</h2>
             <div class="card pad-16 stack-14">

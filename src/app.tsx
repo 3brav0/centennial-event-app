@@ -6,12 +6,14 @@ import { Home } from './screens/Home';
 import { ProgramScreen } from './screens/Program';
 import { EventScreen } from './screens/Event';
 import { LiveScreen } from './screens/Live';
+import { TopicsScreen } from './screens/Topics';
 import { BottomNav, TopBar } from './components/BottomNav';
 import { useWeather, type WeatherCache } from './weather';
 
 export type Route =
   | { name: 'home' }
   | { name: 'program'; day?: number }
+  | { name: 'topics' }
   | { name: 'event'; id: string }
   | { name: 'live' };
 
@@ -20,6 +22,7 @@ function parseHash(hash: string): Route {
   if (name === 'program') return { name: 'program', day: arg ? Number(arg) : undefined };
   if (name === 'event' && arg) return { name: 'event', id: decodeURIComponent(arg) };
   if (name === 'live') return { name: 'live' };
+  if (name === 'topics') return { name: 'topics' };
   return { name: 'home' };
 }
 
@@ -29,6 +32,7 @@ export function href(r: Route): string {
     case 'program': return r.day == null ? '#/program' : `#/program/${r.day}`;
     case 'event': return `#/event/${encodeURIComponent(r.id)}`;
     case 'live': return '#/live';
+    case 'topics': return '#/topics';
   }
 }
 
@@ -126,14 +130,15 @@ export function App() {
   return (
     <AppContext.Provider value={ctx}>
       <div class="app">
-        <TopBar active={route.name === 'event' ? 'program' : route.name} />
+        <TopBar active={route.name === 'event' || route.name === 'topics' ? 'program' : route.name} />
         <main class="screen">
           {route.name === 'home' && <Home />}
           {route.name === 'program' && <ProgramScreen day={route.day} />}
           {route.name === 'event' && <EventScreen id={route.id} />}
           {route.name === 'live' && <LiveScreen />}
+          {route.name === 'topics' && <TopicsScreen />}
         </main>
-        <BottomNav active={route.name === 'event' ? 'program' : route.name} />
+        <BottomNav active={route.name === 'event' || route.name === 'topics' ? 'program' : route.name} />
       </div>
     </AppContext.Provider>
   );

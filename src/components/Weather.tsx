@@ -3,6 +3,7 @@ import { useApp } from '../app';
 import type { EventItem } from '../data';
 import { formatTime, relativeTime } from '../i18n';
 import { daysUntilForecast, eventWeather, type Condition } from '../weather';
+import { eventEndMs } from '../events';
 
 const CLOUD = 'M7 16h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.2 9.6 3.3 3.3 0 0 0 7 16z';
 
@@ -42,7 +43,7 @@ export function WeatherChip({ event, class: cls = '' }: { event: EventItem; clas
 
 export function WeatherCard({ event, class: cls = '' }: { event: EventItem; class?: string }) {
   const { weather, lang, t, now } = useApp();
-  const end = new Date(event.start).getTime() + (event.durationHours ?? 3) * 3_600_000;
+  const end = eventEndMs(event);
   if (now > end || !weather) return null;
   const w = eventWeather(weather, event, lang);
   const waitDays = daysUntilForecast(event, now);

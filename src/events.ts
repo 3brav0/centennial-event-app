@@ -1,4 +1,4 @@
-import type { EventItem, Program } from './data';
+import type { EventItem, Program, Session } from './data';
 import { formatTime, type Lang } from './i18n';
 
 export function eventView(e: EventItem, program: Program, lang: Lang) {
@@ -10,17 +10,22 @@ export function eventView(e: EventItem, program: Program, lang: Lang) {
     time: `${hm} ${ampm}`,
     dayShort: `${d.short[lang]} ${d.num}`,
     dayLong: d.long[lang],
-    startMs: new Date(e.start).getTime()
+    startMs: new Date(e.start).getTime(),
+    endMs: eventEndMs(e)
   };
 }
 
 export type EventView = ReturnType<typeof eventView>;
 
-/** Assume an event is "happening now" for this long after it starts. */
-const RUNNING_MS = 2 * 60 * 60 * 1000;
+/** When the event ends: its last session, else start + durationHours (default 3). */
+export function eventEndMs(e: EventItem): number {
+  const last = e.sessions?.[e.sessions.length - 1];
+  if (last) return new Date(last.end).getTime();
+  return new Date(e.start).getTime() + (e.durationHours ?? 3) * 3_600_000;
+}
 
 export function nextEvent(events: EventView[], now: number) {
-  const running = events.find((e) => now >= e.startMs && now < e.startMs + RUNNING_MS);
+  const running = events.find((e) => now >= e.startMs && now < e.endMs);
   if (running) return { event: running, status: 'running' as const };
   const upcoming = events.find((e) => e.startMs > now);
   if (upcoming) return { event: upcoming, status: 'upcoming' as const };
@@ -32,4 +37,12 @@ export function todayIndex(program: Program, now: number): number {
   const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(now);
   const i = program.days.findIndex((d) => d.date === today);
   return i < 0 ? 0 : i;
+}
+
+/** Topic numbers across the whole program (Tema 1, Tema 2, …); ceremonies aren't numbered. */
+export function topicNumbers(program: Program): Map<Session, number> {
+  const numbers = new Map<Session, number>();
+  let n = 0;
+  for (const e of program.events) for (const s of e.sessions ?? []) if (s.kind === 'topic') numbers.set(s, ++n);
+  return numbers;
 }

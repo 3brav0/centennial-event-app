@@ -4,7 +4,7 @@ Progressive web app for the Centenario 2026 celebration (Atlanta, GA · October 
 Bilingual (Español / English), installable, works offline, and adapts from phones to wide desktop screens.
 
 - **Home**: countdown to the next event, latest announcement, and the three-day program
-- **Program**: events by day, with parking indicators
+- **Program**: events by day, with parking indicators, plus a **Topics** view of the doctrinal topics and ceremonies
 - **Event detail**: weather forecast with preparation tips, address, one-tap directions (Apple Maps, Google Maps, Waze), nearby parking, transit
 - **Announcements**: live notices with filters, unread badge, and optional notifications
 
@@ -41,6 +41,25 @@ Open apps check for new announcements every 60 seconds and when brought back to 
 People who turned on notifications get a system notification for new entries while the app is
 open. (True push to a closed app needs a push server; see *Next steps*.)
 
+### Doctrinal topics and ceremonies
+
+Events can list `sessions` (shown on the event page and under **Program → Topics**). Topics are
+numbered automatically across the program; ceremonies are highlighted and not numbered. The
+event's end time, and so its weather window, comes from the last session.
+
+```json
+"sessions": [
+  {
+    "start": "2026-10-03T17:30:00-04:00",
+    "end": "2026-10-03T19:00:00-04:00",
+    "kind": "topic",
+    "title": { "es": "Irrevocables son las dádivas de Dios", "en": "The Gifts of God Are Irrevocable" },
+    "subtitle": { "es": "…", "en": "…" }
+  },
+  { "start": "…", "end": "…", "kind": "ceremony", "title": { "es": "Ceremonia de Bautismos", "en": "Baptism Ceremony" }, "subtitle": null }
+]
+```
+
 ### Event photos
 
 Put the photo in `public/img/venues/` (a JPEG about 1200px wide, under ~150 KB) and point the
@@ -69,7 +88,8 @@ kept for offline use). Forecasts appear up to 16 days before an event. Per event
 - `coords`: venue latitude/longitude used for the forecast.
 - `outdoor`: `true` adds heat, sun, cold and wind tips; `false` (indoor) only gives travel tips such
   as leaving early when rain is likely.
-- `durationHours` (optional, default 3): how many hours of forecast to cover.
+- `durationHours` (optional, default 3): how many hours of forecast to cover, for events without
+  `sessions` (events with sessions end when their last session ends).
 
 Tip rules live in `src/weather.ts` (`tipsFor`).
 

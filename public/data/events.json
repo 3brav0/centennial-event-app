@@ -148,6 +148,21 @@
         "lng": -84.5888
       },
       "outdoor": false,
+      "sessions": [
+        {
+          "start": "2026-10-02T18:30:00-04:00",
+          "end": "2026-10-02T20:00:00-04:00",
+          "kind": "topic",
+          "title": {
+            "es": "Las visitaciones de Dios",
+            "en": "The Visitations of God"
+          },
+          "subtitle": {
+            "es": "Momentos trascendentales para su pueblo y la humanidad",
+            "en": "Transcendent moments for His people and for humanity"
+          }
+        }
+      ],
       "image": {
         "src": "img/venues/marietta-church.jpg",
         "position": "50% 72%"
@@ -243,6 +258,31 @@
         "lng": -84.5888
       },
       "outdoor": false,
+      "sessions": [
+        {
+          "start": "2026-10-03T17:30:00-04:00",
+          "end": "2026-10-03T19:00:00-04:00",
+          "kind": "topic",
+          "title": {
+            "es": "Irrevocables son las dádivas de Dios",
+            "en": "The Gifts of God Are Irrevocable"
+          },
+          "subtitle": {
+            "es": "Tienen su fundamento en la fidelidad y veracidad de Dios",
+            "en": "They are founded on the faithfulness and truthfulness of God"
+          }
+        },
+        {
+          "start": "2026-10-03T19:00:00-04:00",
+          "end": "2026-10-03T20:00:00-04:00",
+          "kind": "ceremony",
+          "title": {
+            "es": "Ceremonia de Bautismos",
+            "en": "Baptism Ceremony"
+          },
+          "subtitle": null
+        }
+      ],
       "image": {
         "src": "img/venues/marietta-church.jpg",
         "position": "50% 72%"
@@ -278,6 +318,60 @@
         "lng": -84.5728
       },
       "outdoor": true,
+      "sessions": [
+        {
+          "start": "2026-10-04T12:00:00-04:00",
+          "end": "2026-10-04T13:30:00-04:00",
+          "kind": "topic",
+          "title": {
+            "es": "La restauración de la Iglesia de Cristo",
+            "en": "The Restoration of the Church of Christ"
+          },
+          "subtitle": {
+            "es": "El restablecimiento de la Elección, la autoridad, la palabra revelada y los ministerios que conducen a la salvación del alma",
+            "en": "The reestablishment of the Election, the authority, the revealed word, and the ministries that lead to the salvation of the soul"
+          }
+        },
+        {
+          "start": "2026-10-04T14:30:00-04:00",
+          "end": "2026-10-04T16:00:00-04:00",
+          "kind": "topic",
+          "title": {
+            "es": "El ministerio de la justificación",
+            "en": "The Ministry of Justification"
+          },
+          "subtitle": {
+            "es": "Gracia divina administrada por el Apóstol de Jesucristo para salvación",
+            "en": "Divine grace administered by the Apostle of Jesus Christ for salvation"
+          }
+        },
+        {
+          "start": "2026-10-04T16:30:00-04:00",
+          "end": "2026-10-04T18:00:00-04:00",
+          "kind": "topic",
+          "title": {
+            "es": "La Elección del Apóstol de Jesucristo",
+            "en": "The Election of the Apostle of Jesus Christ"
+          },
+          "subtitle": {
+            "es": "Naasón Joaquín García",
+            "en": "Naasón Joaquín García"
+          }
+        },
+        {
+          "start": "2026-10-04T18:00:00-04:00",
+          "end": "2026-10-04T19:00:00-04:00",
+          "kind": "ceremony",
+          "title": {
+            "es": "Ceremonia de Reconocimientos",
+            "en": "Recognition Ceremony"
+          },
+          "subtitle": {
+            "es": "Entrega de Reconocimientos",
+            "en": "Presentation of Recognitions"
+          }
+        }
+      ],
       "image": {
         "src": "img/venues/mable-house-barnes.jpg",
         "credit": "John Phelan",

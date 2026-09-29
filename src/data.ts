@@ -26,6 +26,15 @@ export interface VenueImage {
   position?: string;
 }
 
+export interface Session {
+  start: string;
+  end: string;
+  /** "topic" is a doctrinal topic; "ceremony" is a baptism, recognitions, etc. */
+  kind: 'topic' | 'ceremony';
+  title: Localized;
+  subtitle: Localized | null;
+}
+
 export interface EventItem {
   id: string;
   day: number;
@@ -39,8 +48,10 @@ export interface EventItem {
   coords: { lat: number; lng: number };
   /** Outdoor events get sun/heat/cold tips; indoor ones only travel tips. */
   outdoor: boolean;
-  /** How long the event runs; the forecast covers these hours. Defaults to 3. */
+  /** How long the event runs when it has no sessions; defaults to 3. */
   durationHours?: number;
+  /** Doctrinal topics and ceremonies, in order. */
+  sessions?: Session[];
   image: VenueImage | null;
   info: Localized[];
   parkingNote: Localized | null;

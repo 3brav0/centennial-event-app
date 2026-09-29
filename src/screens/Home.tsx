@@ -108,7 +108,13 @@ export function Home() {
         </div>
 
         <section class="stack-10 home-program">
-          <h2 class="eyebrow section">{t.theProgram}</h2>
+          <div class="row between center">
+            <h2 class="eyebrow section">{t.theProgram}</h2>
+            <a href={href({ name: 'topics' })} class="row center gap-2 t-13 bold green topics-link">
+              {t.doctrinalTopics}
+              <Chevron size={16} />
+            </a>
+          </div>
           <div class="day-grid">
             {program.days.map((d, i) => {
               const evs = events.filter((e) => e.day === i);

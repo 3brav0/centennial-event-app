@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type { EventItem } from './data';
+import { eventEndMs } from './events';
 import { readStore, writeStore } from './data';
 import type { Lang } from './i18n';
 
@@ -7,8 +8,6 @@ import type { Lang } from './i18n';
 // callable from the browser. One request covers every venue.
 
 const REFRESH_MS = 30 * 60_000;
-/** Forecast window when an event doesn't set durationHours. */
-const DEFAULT_HOURS = 3;
 /** Open-Meteo forecasts this many days ahead. */
 export const FORECAST_DAYS = 16;
 
@@ -108,7 +107,7 @@ export function eventWeather(cache: Cache | null, e: EventItem, lang: Lang): Eve
   const hourly = cache?.byPlace[placeKey(e)];
   if (!hourly) return null;
   const start = new Date(e.start).getTime();
-  const hours = e.durationHours ?? DEFAULT_HOURS;
+  const hours = Math.ceil((eventEndMs(e) - start) / 3_600_000);
   const idx: number[] = [];
   for (let h = 0; h < hours; h++) {
     const i = hourly.time.indexOf(localHourKey(start + h * 3_600_000));

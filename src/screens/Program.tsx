@@ -2,6 +2,7 @@ import { href, useApp } from '../app';
 import { eventView, todayIndex } from '../events';
 import { Chevron, Clock, Pin } from '../icons';
 import { ScreenHeader } from '../components/Header';
+import { ProgramTabs } from '../components/ProgramTabs';
 import { VenuePhoto } from '../components/VenuePhoto';
 import { WeatherChip } from '../components/Weather';
 
@@ -13,6 +14,7 @@ export function ProgramScreen({ day }: { day?: number }) {
   return (
     <div class="stack">
       <ScreenHeader title={t.program}>
+        <ProgramTabs active="events" />
         <div class="day-chips" role="tablist">
           {program.days.map((d, i) => {
             const count = events.filter((e) => e.day === i).length;
