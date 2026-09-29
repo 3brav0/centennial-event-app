@@ -1,4 +1,4 @@
-import type { EventItem, Program, Session } from './data';
+import type { EventItem, Program } from './data';
 import { formatTime, type Lang } from './i18n';
 
 export function eventView(e: EventItem, program: Program, lang: Lang) {
@@ -37,12 +37,4 @@ export function todayIndex(program: Program, now: number): number {
   const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(now);
   const i = program.days.findIndex((d) => d.date === today);
   return i < 0 ? 0 : i;
-}
-
-/** Topic numbers across the whole program (Tema 1, Tema 2, …); ceremonies aren't numbered. */
-export function topicNumbers(program: Program): Map<Session, number> {
-  const numbers = new Map<Session, number>();
-  let n = 0;
-  for (const e of program.events) for (const s of e.sessions ?? []) if (s.kind === 'topic') numbers.set(s, ++n);
-  return numbers;
 }

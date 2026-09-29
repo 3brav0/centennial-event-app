@@ -43,9 +43,8 @@ open. (True push to a closed app needs a push server; see *Next steps*.)
 
 ### Doctrinal topics and ceremonies
 
-Events can list `sessions` (shown on the event page and under **Program → Topics**). Topics are
-numbered automatically across the program; ceremonies are highlighted and not numbered. The
-event's end time, and so its weather window, comes from the last session.
+Events can list `sessions` (shown on the event page and under **Program → Topics**). Ceremonies are
+highlighted. The event's end time, and so its weather window, comes from the last session.
 
 ```json
 "sessions": [
