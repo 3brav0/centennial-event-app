@@ -6,6 +6,7 @@ import { Back, Bus, Calendar, Clock, Copy, Info, Nav, Pin } from '../icons';
 import { LangToggle } from '../components/LangToggle';
 import { MapLink } from '../components/MapLink';
 import { VenuePhoto } from '../components/VenuePhoto';
+import { WeatherCard } from '../components/Weather';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -106,6 +107,8 @@ export function EventScreen({ id }: { id: string }) {
               </div>
             </div>
           </section>
+
+          <WeatherCard event={raw} class="o-weather" />
 
           {ev.info.length > 0 && (
             <section class="stack-10 o-info">

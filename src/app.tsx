@@ -7,6 +7,7 @@ import { ProgramScreen } from './screens/Program';
 import { EventScreen } from './screens/Event';
 import { LiveScreen } from './screens/Live';
 import { BottomNav, TopBar } from './components/BottomNav';
+import { useWeather, type WeatherCache } from './weather';
 
 export type Route =
   | { name: 'home' }
@@ -41,6 +42,7 @@ interface Ctx {
   offline: boolean;
   unread: number;
   notifOn: boolean;
+  weather: WeatherCache | null;
   setNotifOn: (on: boolean) => void;
   /** True once the user has navigated inside the app, so history.back() stays in-app. */
   hasHistory: boolean;
@@ -67,6 +69,7 @@ export function App() {
   const now = useNow(30_000);
   const { program, error } = useProgram();
   const { items: announcements, offline } = useAnnouncements(lang, notifOn);
+  const weather = useWeather(program?.events);
 
   useEffect(() => {
     const onHash = () => {
@@ -112,7 +115,7 @@ export function App() {
   }
 
   const ctx: Ctx = {
-    lang, t, program, now, announcements, offline, unread, notifOn, hasHistory,
+    lang, t, program, now, announcements, offline, unread, notifOn, hasHistory, weather,
     toggleLang: () => setLang(lang === 'es' ? 'en' : 'es'),
     setNotifOn: (on) => {
       setNotifOnState(on);

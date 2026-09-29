@@ -32,6 +32,11 @@ const es = {
   kind: { deck: 'Garaje', lot: 'Lote', street: 'Calle' } as Record<string, string>,
   cost: { paid: 'De pago', free: 'Gratis', signs: 'Según señalización' } as Record<string, string>,
   justNow: 'ahora mismo',
+  weather: 'CLIMA', feelsLike: 'Sensación', rain: 'Lluvia', wind: 'Viento',
+  forecastFor: 'Pronóstico', forecastIn: (n: number) => `El pronóstico estará disponible en ${n} ${n === 1 ? 'día' : 'días'}.`,
+  niceOutdoor: 'Buen clima para el evento. ¡Disfrútalo!', niceIndoor: 'Sin inconvenientes por el clima para llegar.',
+  weatherUpdated: 'Actualizado', weatherSource: 'Datos del clima: Open-Meteo',
+  cond: { clear: 'Despejado', partly: 'Parcialmente nublado', cloudy: 'Nublado', fog: 'Neblina', drizzle: 'Llovizna', rain: 'Lluvia', storm: 'Tormentas', snow: 'Nieve' } as Record<string, string>,
   loadError: 'No se pudo cargar el programa. Revisa tu conexión.'
 };
 
@@ -66,6 +71,11 @@ const en: typeof es = {
   kind: { deck: 'Deck', lot: 'Lot', street: 'Street' },
   cost: { paid: 'Paid', free: 'Free', signs: 'Per posted signs' },
   justNow: 'just now',
+  weather: 'WEATHER', feelsLike: 'Feels like', rain: 'Rain', wind: 'Wind',
+  forecastFor: 'Forecast', forecastIn: (n: number) => `The forecast will be available in ${n} ${n === 1 ? 'day' : 'days'}.`,
+  niceOutdoor: 'Nice weather for the event. Enjoy!', niceIndoor: 'No weather concerns for getting there.',
+  weatherUpdated: 'Updated', weatherSource: 'Weather data: Open-Meteo',
+  cond: { clear: 'Clear', partly: 'Partly cloudy', cloudy: 'Cloudy', fog: 'Fog', drizzle: 'Drizzle', rain: 'Rain', storm: 'Storms', snow: 'Snow' },
   loadError: 'Could not load the program. Check your connection.'
 };
 

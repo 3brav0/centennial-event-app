@@ -7,6 +7,7 @@ import { LangToggle } from '../components/LangToggle';
 import { InstallCard } from '../components/InstallCard';
 import { MapLink } from '../components/MapLink';
 import { VenuePhoto } from '../components/VenuePhoto';
+import { WeatherChip } from '../components/Weather';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -58,7 +59,10 @@ export function Home() {
           <div class="next-content">
             <div class="row between center">
               <div class="eyebrow gold small">{label}</div>
-              <div class="t-12 mint">{next.dayShort} · {next.time}</div>
+              <div class="row center gap-8 t-12 mint">
+                <span>{next.dayShort} · {next.time}</span>
+                <WeatherChip event={next} class="on-dark" />
+              </div>
             </div>
             {status === 'upcoming' && <Countdown ms={next.startMs - now} />}
             <div class="stack-6">

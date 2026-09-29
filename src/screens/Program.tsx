@@ -3,6 +3,7 @@ import { eventView, todayIndex } from '../events';
 import { Chevron, Clock, Pin } from '../icons';
 import { ScreenHeader } from '../components/Header';
 import { VenuePhoto } from '../components/VenuePhoto';
+import { WeatherChip } from '../components/Weather';
 
 export function ProgramScreen({ day }: { day?: number }) {
   const { t, lang, program, now } = useApp();
@@ -53,6 +54,7 @@ export function ProgramScreen({ day }: { day?: number }) {
                   </div>
                   <a href={href({ name: 'event', id: e.id })} class="card event-card">
                     <VenuePhoto event={e} class="event-card-photo" />
+                    <WeatherChip event={e} class="on-photo" />
                     <div class="event-card-content">
                       <div class="row center gap-6 t-13 bold green card-time">
                         <Clock size={15} />

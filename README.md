@@ -5,7 +5,7 @@ Bilingual (Español / English), installable, works offline, and adapts from phon
 
 - **Home**: countdown to the next event, latest announcement, and the three-day program
 - **Program**: events by day, with parking indicators
-- **Event detail**: address, one-tap directions (Apple Maps, Google Maps, Waze), nearby parking, transit
+- **Event detail**: weather forecast with preparation tips, address, one-tap directions (Apple Maps, Google Maps, Waze), nearby parking, transit
 - **Announcements**: live notices with filters, unread badge, and optional notifications
 
 ## Updating content (no code needed)
@@ -59,6 +59,19 @@ event's `image` at it:
 `credit`, `license` and `source` are optional for your own photos but **required** for Creative
 Commons images (shown as a small caption on the event page). `position` adjusts the crop. Set
 `"image": null` to show the Centenario crest instead.
+
+### Weather
+
+Each event shows the forecast for the hours it runs, with preparation tips, from
+[Open-Meteo](https://open-meteo.com) (free, no API key; refreshed every 30 minutes, last forecast
+kept for offline use). Forecasts appear up to 16 days before an event. Per event in `events.json`:
+
+- `coords`: venue latitude/longitude used for the forecast.
+- `outdoor`: `true` adds heat, sun, cold and wind tips; `false` (indoor) only gives travel tips such
+  as leaving early when rain is likely.
+- `durationHours` (optional, default 3): how many hours of forecast to cover.
+
+Tip rules live in `src/weather.ts` (`tipsFor`).
 
 ### Directions
 

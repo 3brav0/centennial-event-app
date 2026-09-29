@@ -35,6 +35,12 @@ export interface EventItem {
   venue: Localized;
   address: Localized;
   mapsQuery: string;
+  /** Venue location, used for the weather forecast. */
+  coords: { lat: number; lng: number };
+  /** Outdoor events get sun/heat/cold tips; indoor ones only travel tips. */
+  outdoor: boolean;
+  /** How long the event runs; the forecast covers these hours. Defaults to 3. */
+  durationHours?: number;
   image: VenueImage | null;
   info: Localized[];
   parkingNote: Localized | null;

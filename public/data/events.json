@@ -59,6 +59,11 @@
         "en": "Across from the Georgia State Capitol, Atlanta, GA 30334"
       },
       "mapsQuery": "Liberty Plaza, Atlanta, GA 30334",
+      "coords": {
+        "lat": 33.7485,
+        "lng": -84.3871
+      },
+      "outdoor": true,
       "image": {
         "src": "img/venues/liberty-plaza.jpg",
         "credit": "Stevens-Wilkinson",
@@ -138,6 +143,11 @@
         "en": "3050 Austell Rd SW, Marietta, GA 30008"
       },
       "mapsQuery": "3050 Austell Rd SW, Marietta, GA 30008",
+      "coords": {
+        "lat": 33.8803,
+        "lng": -84.5888
+      },
+      "outdoor": false,
       "image": {
         "src": "img/venues/marietta-church.jpg",
         "position": "50% 72%"
@@ -168,6 +178,11 @@
         "en": "830 Willoughby Way NE, Atlanta, GA 30312"
       },
       "mapsQuery": "830 Willoughby Way NE, Atlanta, GA 30312",
+      "coords": {
+        "lat": 33.764,
+        "lng": -84.3628
+      },
+      "outdoor": true,
       "image": {
         "src": "img/venues/fourth-ward-park.jpg",
         "credit": "Marc Merlin",
@@ -223,6 +238,11 @@
         "en": "3050 Austell Rd SW, Marietta, GA 30008"
       },
       "mapsQuery": "3050 Austell Rd SW, Marietta, GA 30008",
+      "coords": {
+        "lat": 33.8803,
+        "lng": -84.5888
+      },
+      "outdoor": false,
       "image": {
         "src": "img/venues/marietta-church.jpg",
         "position": "50% 72%"
@@ -253,6 +273,11 @@
         "en": "5239 Floyd Rd, Mableton, GA 30126"
       },
       "mapsQuery": "Mable House Barnes Amphitheatre, 5239 Floyd Rd, Mableton, GA 30126",
+      "coords": {
+        "lat": 33.8273,
+        "lng": -84.5728
+      },
+      "outdoor": true,
       "image": {
         "src": "img/venues/mable-house-barnes.jpg",
         "credit": "John Phelan",
