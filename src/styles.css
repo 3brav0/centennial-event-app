@@ -352,6 +352,16 @@ img { display: block; }
 }
 .weather-credit { text-decoration: underline; text-underline-offset: 2px; }
 
+/* ---------- site footer ---------- */
+.site-footer { border-top: 1px solid var(--line); margin-top: 8px; }
+.site-footer-inner { padding: 18px 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--muted-2); }
+.site-footer img { object-fit: contain; flex-shrink: 0; }
+.footer-link {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--forest); color: var(--forest); font-weight: 700; white-space: nowrap;
+}
+.footer-link:hover { background: var(--forest); color: var(--ivory); }
+
 /* ---------- bottom nav ---------- */
 .topbar { display: none; }
 .bottom-nav {
@@ -383,7 +393,8 @@ img { display: block; }
   body { background: var(--cream); }
   .app { max-width: none; }
   .container { max-width: 1240px; padding-inline: 32px; }
-  .screen { padding-bottom: 56px; }
+  /* The site footer closes the page on wide screens. */
+  .screen { padding-bottom: 0; }
 
   /* The top bar owns the safe area and the language switch on wide screens. */
   .screen-header, .event-header, .hero { --safe-top: 0px; }
@@ -472,6 +483,8 @@ img { display: block; }
   .event-photo { margin: 0; border-radius: 22px; aspect-ratio: 4 / 3; }
   .event-photo.fallback { display: grid; border: 1px solid rgba(232, 200, 114, 0.28); }
   .event-body { padding-top: 32px; padding-bottom: 56px; gap: 28px; }
+
+  .site-footer-inner { padding: 22px 32px; font-size: 14px; }
 
   /* Topics */
   .segmented { max-width: 320px; }

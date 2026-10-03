@@ -7,6 +7,7 @@ import { ProgramScreen } from './screens/Program';
 import { EventScreen } from './screens/Event';
 import { LiveScreen } from './screens/Live';
 import { TopicsScreen } from './screens/Topics';
+import { SiteFooter } from './components/SiteFooter';
 import { BottomNav, TopBar } from './components/BottomNav';
 import { useWeather, type WeatherCache } from './weather';
 
@@ -137,6 +138,7 @@ export function App() {
           {route.name === 'event' && <EventScreen id={route.id} />}
           {route.name === 'live' && <LiveScreen />}
           {route.name === 'topics' && <TopicsScreen />}
+          <SiteFooter />
         </main>
         <BottomNav active={route.name === 'event' || route.name === 'topics' ? 'program' : route.name} />
       </div>
