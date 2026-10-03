@@ -40,7 +40,7 @@ function qrSvg({ ink = '#0F3D2E', bg = '#FFFFFF', size = 1000 } = {}) {
 
 const fonts = `<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:wght@700&family=Manrope:wght@500;700&display=swap" rel="stylesheet">`;
 
-const card = `<!doctype html><html><head><meta charset="utf-8">${fonts}<style>
+const cardHtml = (c) => `<!doctype html><html><head><meta charset="utf-8">${fonts}<style>
 * { box-sizing: border-box; margin: 0; }
 body { width: 1200px; height: 1600px; background: #0F3D2E; font-family: 'Manrope', sans-serif; color: #FBF6EA;
   display: flex; flex-direction: column; align-items: center; padding: 96px 110px 84px; position: relative; overflow: hidden; }
@@ -57,20 +57,34 @@ h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 84px
 </style></head><body>
 <div class="ring" style="width:1500px;height:1500px;left:-150px;top:520px"></div>
 <div class="ring" style="width:1900px;height:1900px;left:-350px;top:320px"></div>
-<div class="eyebrow">CENTENARIO 2026 · ATLANTA, GA</div>
-<h1>Escanea para ver el programa</h1>
-<div class="en">Scan to see the program</div>
+<div class="eyebrow">${c.eyebrow}</div>
+<h1>${c.title}</h1>
+<div class="en">${c.subtitle}</div>
 <div class="panel">${qrSvg({ size: 760 })}</div>
-<div class="what"><b>Programa · Ubicaciones · Avisos en vivo</b><br>Program · Directions · Live announcements</div>
+<div class="what">${c.what}</div>
 <div class="url">event.atl.cotlgfb.org</div>
 </body></html>`;
+
+// Bilingual card (default) and an English-only version.
+const card = cardHtml({
+  eyebrow: 'CENTENARIO 2026 · ATLANTA, GA',
+  title: 'Escanea para ver el programa',
+  subtitle: 'Scan to see the program',
+  what: '<b>Programa · Ubicaciones · Avisos en vivo</b><br>Program · Directions · Live announcements'
+});
+const cardEn = cardHtml({
+  eyebrow: 'CENTENNIAL 2026 · ATLANTA, GA',
+  title: 'Scan to see the program',
+  subtitle: 'October 2 – 4, 2026',
+  what: '<b>Program · Directions · Live announcements</b><br>Schedule, venues, parking and weather'
+});
 
 const plain = `<!doctype html><html><head><meta charset="utf-8"><style>*{margin:0}body{width:1200px;height:1200px}svg{display:block}</style></head>
 <body>${qrSvg({ size: 1200 })}</body></html>`;
 
 fs.writeFileSync(path.join(dir, 'centenario-qr.svg'), qrSvg({ size: 1200 }));
 const b = await chromium.launch({ executablePath: process.env.BROWSER || '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge' });
-for (const [name, html, w, h] of [['centenario-qr-card.png', card, 1200, 1600], ['centenario-qr.png', plain, 1200, 1200]]) {
+for (const [name, html, w, h] of [['centenario-qr-card.png', card, 1200, 1600], ['centenario-qr-card-en.png', cardEn, 1200, 1600], ['centenario-qr.png', plain, 1200, 1200]]) {
   const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1.5 });
   await p.setContent(html, { waitUntil: 'networkidle' });
   await p.evaluate(() => document.fonts.ready);
